@@ -52,6 +52,10 @@ public class DataInitializer {
             group2.getSocialUsers().add(user2);
             group2.getSocialUsers().add(user3);
 
+            // Save groups to the database
+            groupRepository.save(group1);
+            groupRepository.save(group2);
+
             // Associate users with groups
             user1.getGroups().add(group1);
             user2.getGroups().add(group1);
@@ -62,10 +66,6 @@ public class DataInitializer {
             userRepository.save(user1);
             userRepository.save(user2);
             userRepository.save(user3);
-
-            // Save groups to the database
-            groupRepository.save(group1);
-            groupRepository.save(group2);
 
             // Create some posts
             Post post1 = new Post();
