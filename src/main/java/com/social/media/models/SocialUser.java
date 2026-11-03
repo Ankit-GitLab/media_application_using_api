@@ -1,5 +1,6 @@
 package com.social.media.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,9 +19,11 @@ public class SocialUser {
 
     @OneToOne(mappedBy = "user")
 //    @JoinColumn(name = "social_profile_id")
+
     private SocialProfile socialProfile;
 
     @OneToMany(mappedBy = "socialUser")
+    @JsonIgnore
     private List<Post> posts = new ArrayList<>();
 
     @ManyToMany
@@ -29,6 +32,7 @@ public class SocialUser {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
+
     private Set<SocialGroup> groups = new HashSet<>();
 
     @Override
