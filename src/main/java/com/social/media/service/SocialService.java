@@ -17,6 +17,14 @@ public class SocialService {
     }
 
     public SocialUser saveUser(SocialUser socialUser) {
+        // Ignore incoming IDs
+        socialUser.setId(null);
+        if (socialUser.getSocialProfile() != null) {
+            // Generate a new Profile ID
+            socialUser.getSocialProfile().setId(null);
+            // Maintain bidirectional relationship
+            socialUser.getSocialProfile().setUser(socialUser);
+        }
         return socialUserRepository.save(socialUser);
     }
 }
